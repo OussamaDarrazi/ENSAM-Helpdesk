@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * base template bach mnb9ach nbdl l'headers w dkchi li khsni n'importi
+ */
 function base_template($content, $title = "ENSAM Helpdesk")
 {
     ob_start();
@@ -10,6 +14,7 @@ function base_template($content, $title = "ENSAM Helpdesk")
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="src/output.css">
+        <link rel="shortcut icon" href="http://www.ensam-casa.ma/assets/images/ensam2.png" type="image/x-icon">
         <title><?= $title ?></title>
     </head>
 
