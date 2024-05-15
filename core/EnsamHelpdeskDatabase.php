@@ -4,7 +4,7 @@ class HelpdeskDatabase {
     // Singleton pour ne pas etablir plusieur connection a la bdd
     private static $instance = null;
     private $pdo;
-    private $host = 'mysql';
+    private $host = 'localhost';
     private $user = 'root';
     private $password = '';
     private $database = 'ensamhelpdesk';
