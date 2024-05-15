@@ -15,7 +15,7 @@ function base_template($content, $title = "ENSAM Helpdesk")
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="src/output.css">
         <link rel="shortcut icon" href="http://www.ensam-casa.ma/assets/images/ensam2.png" type="image/x-icon">
-        <title><?= $title ?></title>
+        <title><?= "ENSAM Helpdesk - " . $title ?></title>
     </head>
 
     <body>
