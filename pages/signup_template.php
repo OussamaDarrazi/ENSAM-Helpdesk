@@ -10,6 +10,39 @@
       Inscrivez-vous maintenant pour bénéficier des nos services d'assistance.
       </p>
       <!-- End Title -->
+      <!-- Error Messages -->
+<?php
+if (!empty($errors)) {
+?>
+
+<div class="bg-red-50 border border-red-200 text-sm text-red-800 rounded-lg p-4 my-2" role="alert">
+  <div class="flex">
+    <div class="flex-shrink-0">
+      <svg class="flex-shrink-0 size-4 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="m15 9-6 6"></path>
+        <path d="m9 9 6 6"></path>
+      </svg>
+    </div>
+    <div class="ms-4">
+      <h3 class="text-sm font-semibold">
+      Un problème est survenu lors de la soumission de vos données.
+      </h3>
+      <div class="mt-2 text-sm text-red-700">
+        <ul class="list-disc space-y-1 ps-5">
+          <?php foreach ($errors as $error): ?>
+            <li><?php echo htmlspecialchars($error); ?></li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php
+}
+?>
+      <!-- End Error Messages -->
       <!-- Form -->
       <form method="post" class="my-5">
         <div class="mb-4">
@@ -58,6 +91,13 @@
             class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
             placeholder="Mot de passe">
         </div>
+        <div class="mb-4">
+          <label for="hs-hero-password-2" class="block text-sm font-medium"><span
+              class="sr-only">Confirmer votre mot de passe</span></label>
+          <input name="password2" type="password" id="hs-hero-password-2"
+            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+            placeholder="Confirmer votre mot de passe">
+        </div>
 
         <div class="grid">
           <button type="submit"
@@ -72,4 +112,5 @@
     class="hidden md:block md:absolute md:top-0 md:start-1/2 md:end-0 h-full bg-[url('images/hero-section-bg.png')] bg-no-repeat bg-right bg-cover">
   </div>
   <!-- End Col -->
+  
 </div>
