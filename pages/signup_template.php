@@ -103,6 +103,12 @@ if (!empty($errors)) {
           <button type="submit"
             class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">S'inscrire</button>
         </div>
+        <a class="pe-3.5 inline-flex items-center gap-x-2 text-sm text-gray-600 decoration-2 hover:underline hover:text-blue-600" href="./login.php">
+      <svg class="size-2.5" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M11.2792 1.64001L5.63273 7.28646C5.43747 7.48172 5.43747 7.79831 5.63273 7.99357L11.2792 13.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+      </svg>
+      Vous avez un compte? connectez-vous
+    </a>
       </form>
       <!-- End Form -->
     </div>
