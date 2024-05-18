@@ -18,7 +18,7 @@ class User
     public int $department_id;
     public ?int $id; // nullable
     public UserType $user_type;
-    public  $isActive;
+    public $isActive;
     public $pin;
     private $db;
 
@@ -37,35 +37,58 @@ class User
         $this->db = HelpdeskDatabase::getInstance();
     }
 
-    public function save(){
-        $isAdmin = ($this->user_type == UserType::ADMIN)? 1 : 0; 
-        $isHelpdesk = ($this->user_type == UserType::HELPDESK)? 1 : 0; 
-            
-        if($this->id == null){
+    
+    public function save()
+    {
+        $isAdmin = ($this->user_type == UserType::ADMIN) ? 1 : 0;
+        $isHelpdesk = ($this->user_type == UserType::HELPDESK) ? 1 : 0;
+
+        if ($this->id == null) {
             $sql = "INSERT INTO employe (first_name, last_name, email, phone_number, password, dept_id, isActive, isAdmin, isHelpdesk) 
                     VALUES (?,?,?,?,?,?,?,?,?)";
-            $params = [$this->first_name, $this->last_name, $this->email, $this->phone_number, $this->password_hash, 
-                       $this->department_id, $this->isActive, $isAdmin, $isHelpdesk];
+            $params = [
+                $this->first_name,
+                $this->last_name,
+                $this->email,
+                $this->phone_number,
+                $this->password_hash,
+                $this->department_id,
+                $this->isActive,
+                $isAdmin,
+                $isHelpdesk
+            ];
         } else {
             $sql = "UPDATE employe SET first_name =?, last_name =?, email =?, phone_number =?, password =?, dept_id =?, 
                     isActive =?, isAdmin =?, isHelpdesk =? WHERE employe_id =?";
-    
-            $params = [$this->first_name, $this->last_name, $this->email, $this->phone_number, $this->password_hash, 
-                       $this->department_id, $this->isActive ,$isAdmin, $isHelpdesk,$this->id];
+
+            $params = [
+                $this->first_name,
+                $this->last_name,
+                $this->email,
+                $this->phone_number,
+                $this->password_hash,
+                $this->department_id,
+                $this->isActive,
+                $isAdmin,
+                $isHelpdesk,
+                $this->id
+            ];
         }
         return $this->db->executeDML($sql, $params);
     }
 
-    public function send_activation_pin(){
+    public function send_activation_pin()
+    {
         $this->pin = send_activation_pin($this->email);
-        if($this->pin){
+        if ($this->pin) {
             $this->db->executeDML("INSERT INTO verification_pin (email, pin) VALUES ('$this->email', '$this->pin');");
             return $this->pin;
-        }else{
+        } else {
             throw new Exception("Unable to send verification pin to $this->email");
         }
     }
-    public function activate(){
+    public function activate()
+    {
         $this->isActive = 1;
         $this->pin = false;
         $this->save();
@@ -74,7 +97,8 @@ class User
     }
 
     public static function UsersFromDB($query)
-    {   $db = HelpdeskDatabase::getInstance();
+    {
+        $db = HelpdeskDatabase::getInstance();
         $users = [];
         $user_results = $db->executeDQL($query);
         foreach ($user_results as $user_result) {
@@ -84,17 +108,19 @@ class User
             $phone_number = $user_result["phone_number"];
             $password_hash = $user_result["password"];
             $department_id = $user_result["dept_id"];
-            $user_type = $user_result["isAdmin"]? UserType::ADMIN: ( $user_result["isHelpdesk"]? UserType::HELPDESK: UserType::EMPLOYE);
+            $user_type = $user_result["isAdmin"] ? UserType::ADMIN : ($user_result["isHelpdesk"] ? UserType::HELPDESK : UserType::EMPLOYE);
             $id = $user_result["employe_id"];
-            $isActive = (bool)$user_result["isActive"];
-            $pin = $user_result["pin"];
+            $isActive = (bool) $user_result["isActive"];
             $user = new User($first_name, $last_name, $email, $phone_number, $password_hash, $department_id, $user_type, $isActive, $id);
-            $user->pin = $pin;
+
+            if (in_array("pin", array_keys($user_result))) { //we sometimes don't need the pin
+                $pin = $user_result["pin"];
+                $user->pin = $pin;
+            }
             $users[] = $user;
         }
         return $users;
     }
-
 
 
 
