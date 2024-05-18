@@ -3,7 +3,7 @@ require_once ("pages/utils/base.php");
 require_once ("pages/utils/render_template.php");
 require_once ("core/EnsamHelpdeskDatabase.php");
 require_once ("core/User.php");
-require_once ("utils/send_verification_pin.php");
+$MINIMUM_PASSWORD_LENGTH = 8;
 $errors = [];
 $database = HelpdeskDatabase::getInstance();
 $departments = $database->executeDQL("SELECT * from dept  order by dept_name = 'Autre', dept_name");  //to keep Other hia l'option lkhra
@@ -31,14 +31,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }    
         }else if($password != $password2){
             $errors[] = "Les mots de passe ne se correspondent pas";
-        }else if(strlen($password)){
-            $errors[] = "Le mot de passe doit contenir au moins 8 caractères";
+        }else if(strlen($password) < $MINIMUM_PASSWORD_LENGTH){
+            $errors[] = "Le mot de passe doit contenir au moins $MINIMUM_PASSWORD_LENGTH caractères";
         }else{
             $password_hash = password_hash($password, PASSWORD_DEFAULT); 
             $user = new User($first_name, $last_name, $email, $phone_number, $password_hash, $department_id, UserType::EMPLOYE);
-            $user->save();
-            $user->send_activation_pin();
-        header("Location: confirm.php?email=$email");
+           if( $user->save()){
+               $user->send_activation_pin();
+               header("Location: confirm.php?email=$user->email");
+           }
         
     }
 }
