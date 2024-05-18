@@ -8,7 +8,7 @@ function send_activation_pin($email){
 
     // Email subject and body
     $subject = "Verification - ENSAM Helpdesk";
-    $message = "Cher utilisateur,\n\n";
+    $message = "Bienvenue à ENSAM Helpdesk,\n\n";
     $message .= "Votre pin de verification est: " . $pin . "\n";
     $message .= "Veuillez cliquer sur le lien suivant pour vérifier votre adresse email :\n";
     $message .= $verification_link . "\n\n";
