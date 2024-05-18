@@ -2,6 +2,7 @@
 require_once ("pages/utils/base.php");
 require_once ("pages/utils/render_template.php");
 require_once ("core/EnsamHelpdeskDatabase.php");
+require_once ("core/User.php");
 require_once ("utils/send_verification_pin.php");
 $errors = [];
 $database = HelpdeskDatabase::getInstance();
@@ -21,9 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $last_name = ucfirst($_POST["last-name"]);
         $department_id = $_POST["department"];
         
-        $comptes_existant = $database->executeDQL("select * from employe where email='$email'");
-        if($comptes_existant){
-            if($comptes_existant[0]["isActive"]){
+        $comptes_associées= User::UsersFromDB("SELECT * from employe where email='$email'");
+        if(count($comptes_associées)>0){
+            if($comptes_associées[0]->isActive){
                 $errors[] = "Un compte actif est associé a cette adresse mail";
             }else{
                 $errors[] = "Une tentative d'inscription est deja faite avec cette adresse mail, verifier votre boite mail pour activer votre compte.";
@@ -33,12 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }else if(strlen($password)){
             $errors[] = "Le mot de passe doit contenir au moins 8 caractères";
         }else{
-            $pin = send_verification_pin($email);
             $password_hash = password_hash($password, PASSWORD_DEFAULT); 
-            $database->executeDML("INSERT INTO verification_pin (email, pin) VALUES ('$email', '$pin');");
-            $database->executeDML("INSERT INTO employe 
-        (first_name, last_name, email, phone_number , password, dept_id)
-        VALUES ('$first_name', '$last_name', '$email', '$phone_number' ,'$password_hash', $department_id)");
+            $user = new User($first_name, $last_name, $email, $phone_number, $password_hash, $department_id, UserType::EMPLOYE);
+            $user->save();
+            $user->send_activation_pin();
         header("Location: confirm.php?email=$email");
         
     }

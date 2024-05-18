@@ -11,23 +11,21 @@ if(!isset($_GET["email"])){
 else{
     $email = $_GET["email"];
     #I check if there is a verification pin awaiting activation
-    $pins = $database->executeDQL("SELECT * FROM verification_pin WHERE email = '$email'");
-    if(count($pins) == 0){
+    $user = User::UsersFromDB("select * from employe where email = '$email'")[0];
+    if(!$user->pin){
         header("Location: signup.php");
-    }else{
-        $pin = $pins[0]["pin"];
     }
 }
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $pin_input = $_POST["digit-1"].$_POST["digit-2"].$_POST["digit-3"].$_POST["digit-4"];
-    if($pin_input != $pin){
+    if($pin_input != $user->pin){
     }else{
-        $database->executeDQL("DELETE FROM verification_pin WHERE email = '$email'");
-        $database->executeDQL("UPDATE employe SET isActive=1 WHERE email = '$email'");
+        $user->activate();
         header("Location: login.php");
     }
 }
+
 $context=[
     "email"=>$email
 ];

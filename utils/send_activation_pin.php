@@ -1,5 +1,5 @@
 <?php
-function send_verification_pin($email){
+function send_activation_pin($email){
     // Generate a random 4-digit PIN
     $pin = mt_rand(1000, 9999);
 
