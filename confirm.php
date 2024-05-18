@@ -2,6 +2,7 @@
 require_once("pages/utils/base.php");
 require_once("pages/utils/render_template.php");
 require_once("core/EnsamHelpdeskDatabase.php");
+require_once ("core/User.php");
 $database = HelpdeskDatabase::getInstance();
 
 if(!isset($_GET["email"])){
@@ -11,8 +12,23 @@ if(!isset($_GET["email"])){
 else{
     $email = $_GET["email"];
     #I check if there is a verification pin awaiting activation
-    $user = User::UsersFromDB("select * from employe where email = '$email'")[0];
-    if(!$user->pin){
+    $user = User::UsersFromDB("SELECT 
+    employe_id,
+    first_name,
+    last_name,
+    employe.email as email,
+    phone_number,
+    password,
+    dept_id,
+    isAdmin,
+    isHelpdesk,
+    isActive,
+    employe_id,
+    pin
+     FROM employe
+    LEFT JOIN verification_pin ON employe.email = verification_pin.email
+    WHERE employe.email = '$email'")[0];
+    if(is_null($user->pin)){
         header("Location: signup.php");
     }
 }
