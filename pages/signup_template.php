@@ -50,13 +50,13 @@ if (!empty($errors)) {
               </span></label>
           <input name="first-name" type="text" id="hs-hero-first-name-2"
             class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-            placeholder="Prenom">
+            placeholder="Prenom" required>
         </div>
         <div class="mb-4">
           <label for="hs-hero-last-name-2" class="block text-sm font-medium"><span class="sr-only">Nom</span></label>
           <input name="last-name" type="text" id="hs-hero-last-name-2"
             class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-            placeholder="Nom">
+            placeholder="Nom" required>
         </div>
         <div class="mb-4">
           <div class="relative">
@@ -81,7 +81,14 @@ if (!empty($errors)) {
               </span></label>
           <input name="email" type="email" id="hs-hero-email-2"
             class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-            placeholder="Adresse mail">
+            placeholder="Adresse mail" required>
+        </div>
+        <div class="mb-4">
+          <label for="hs-hero-email-2" class="block text-sm font-medium"><span class="sr-only">Telephone
+              </span></label>
+          <input name="phone_number" pattern= "\+[0-9]{12}" type="text" id="hs-hero-email-2"
+            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+            placeholder="Telephone (+xxxxxxxxxxxx)" required>
         </div>
 
         <div class="mb-4">
@@ -89,14 +96,14 @@ if (!empty($errors)) {
               class="sr-only">Mot de passe</span></label>
           <input name="password" type="password" id="hs-hero-password-2"
             class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-            placeholder="Mot de passe">
+            placeholder="Mot de passe" required>
         </div>
         <div class="mb-4">
           <label for="hs-hero-password-2" class="block text-sm font-medium"><span
               class="sr-only">Confirmer votre mot de passe</span></label>
           <input name="password2" type="password" id="hs-hero-password-2"
             class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-            placeholder="Confirmer votre mot de passe">
+            placeholder="Confirmer votre mot de passe" required>
         </div>
 
         <div class="grid">
