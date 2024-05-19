@@ -107,7 +107,7 @@
 
                 </div>
                 <!-- END DROP DOWN   -->
-                <a href="#"
+                <a href="create_ticket.php"
                     class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none">
                     Nouveau Ticket
                 </a>
