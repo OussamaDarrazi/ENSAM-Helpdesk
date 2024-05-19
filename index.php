@@ -19,5 +19,5 @@ if(isset($_SESSION["user_id"])){
         echo base_template(render_template("pages/customer_dashboard.php", $context), "Employee Dashboard");
     }
 }else{
- echo "session didn't work goddamit";
+ header("Location: login.php");
 }
