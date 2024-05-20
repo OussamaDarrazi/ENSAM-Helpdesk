@@ -13,7 +13,7 @@ class Ticket{
     public $helpdesk_name;
     public $owner_name;
     public $db;
-    public function __construct($id, $owner_id, $assigned_helpdesk_id, $created_at, $last_updated_at, $subject, $category_id, $status_id) {
+    public function __construct( $owner_id, $assigned_helpdesk_id, $created_at, $last_updated_at, $subject, $category_id, $status_id, $id=null) {
         $this->db = HelpdeskDatabase::getInstance();
         $this->id = $id;
         $this->owner_id = $owner_id;
@@ -74,7 +74,7 @@ class Ticket{
             $subject = $ticket_result["subject"];
             $category_id = $ticket_result["category_id"];
             $status_id = $ticket_result["status_id"];
-            $ticket = new Ticket($id, $owner_id, $assigned_helpdesk_id, $created_at, $last_updated_at, $subject, $category_id, $status_id);
+            $ticket = new Ticket( $owner_id, $assigned_helpdesk_id, $created_at, $last_updated_at, $subject, $category_id, $status_id, $id);
             $tickets[] = $ticket;
         }
         return $tickets;
