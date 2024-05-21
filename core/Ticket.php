@@ -25,13 +25,17 @@ class Ticket{
         $this->status_id = $status_id;
         $this->category = $this->db->executeDQL("select category_name from ticket_category where category_id = $this->category_id")[0]["category_name"];
         $this->status = $this->db->executeDQL("select status_name from ticket_status where status_id = $this->status_id")[0]["status_name"];
-        $this->helpdesk_name = "";
-        $this->owner_name = "";
+        //getting the names
+        $hd = $this->db->executeDQL("SELECT first_name, last_name from employe where employe_id = ?", [$this->assigned_helpdesk_id]);
+        
+        $this->helpdesk_name = $hd? $hd[0]["first_name"] . " " . $hd[0]["last_name"] : "";
+        $owner = $this->db->executeDQL("SELECT first_name, last_name from employe where employe_id = ?", [$this->owner_id]);
+        $this->owner_name = $owner? $owner[0]["first_name"] . " " . $owner[0]["last_name"] : "";
     }
     public function save() {
         if ($this->id === null) {
             // Insert new ticket
-            $sql = "INSERT INTO tickets (created_by, assigned_to, created_at, last_updated_at, subject, category_id, status_id) 
+            $sql = "INSERT INTO ticket (created_by, assigned_to, created_at, last_updated_at, subject, category_id, status_id) 
                     VALUES (?, ?, ?, ?, ?, ?, ?)";
             $params = [
                 $this->owner_id,
@@ -42,9 +46,23 @@ class Ticket{
                 $this->category_id,
                 $this->status_id
             ];
+            if($this->db->executeDML($sql, $params)){
+                //Retirieving the id
+                $sql = "SELECT ticket_id FROM ticket WHERE created_by=? AND created_at=? AND last_updated_at=? AND subject=? AND category_id=? AND status_id=?";
+                $params = [
+                    $this->owner_id,
+                    $this->created_at->format('Y-m-d H:i:s'),
+                    $this->last_updated_at->format('Y-m-d H:i:s'),
+                    $this->subject,
+                    $this->category_id,
+                    $this->status_id
+                ];
+                $this->id = $this->db->executeDQL($sql, $params)[0]["ticket_id"];
+            }
+            
         } else {
             // Update existing ticket
-            $sql = "UPDATE tickets SET created_by = ?, assigned_to = ?, created_at = ?, last_updated_at = ?, 
+            $sql = "UPDATE ticket SET created_by = ?, assigned_to = ?, created_at = ?, last_updated_at = ?, 
                     subject = ?, category_id = ?, status_id = ? WHERE ticket_id = ?";
             $params = [
                 $this->owner_id,
@@ -56,8 +74,9 @@ class Ticket{
                 $this->status_id,
                 $this->id
             ];
+            $this->db->executeDML($sql, $params) or die("Failed to insert ticket");;
         }
-        return $this->db->executeDML($sql, $params);
+        return $this->id;
     }
 
     public static function TicketsFromDB($query)
