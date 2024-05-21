@@ -3,7 +3,7 @@
     <nav class="relative max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8"
         aria-label="Global">
         <div class="flex items-center justify-between">
-            <a class="flex gap-x-3.5 text-3xl font-semibold" href="#" aria-label="Brand">
+            <a class="flex gap-x-3.5 text-3xl font-semibold" href="index.php" aria-label="Brand">
                 <img src="src/images/ensam logo.png" class="h-8" alt="Logo ENSAM"><span class="text-gray-600 italic">Helpdesk</span></a>
             <div class="sm:hidden">
                 <button type="button"
@@ -27,7 +27,7 @@
             class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block">
             <div
                 class="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
-                <a class="font-medium text-gray-500 sm:py-6" href="#">Dashboard</a>
+                <a class="font-medium text-gray-500 sm:py-6" href="index.php">Dashboard</a>
                 <a class="font-medium text-gray-500 sm:py-6" href="#">Utilisateurs</a>
                 <!-- DROP DOWN -->
                 <div
