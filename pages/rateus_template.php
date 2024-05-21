@@ -5,7 +5,7 @@
     <div class="text-center">
       <h1 class="block text-2xl font-bold text-gray-800">Évaluez nous!</h1>
       <p class="mt-2 text-sm text-gray-600">
-        Comment trouvez vous votre notre interraction durant votre dernier ticket?</p>
+        Comment trouvez vous notre interraction durant votre dernier ticket?</p>
     </div>
 <!-- Errors -->
 <?php
