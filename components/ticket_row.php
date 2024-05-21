@@ -32,7 +32,7 @@ $status_color = $status_colors[$ticket->status_id];
   
         <option value="">Unassigned</option>
         <?php foreach ($helpdesk as $hd) { ?>
-          <option value="<?= $hd->id?>"><?= $hd->first_name . " " . $hd->last_name ?></option>
+          <option value="<?= $hd->id?>"  <?php if($hd->id == $ticket->assigned_helpdesk_id) echo "selected"?>><?= $hd->first_name . " " . $hd->last_name ?></option>
         <?php }
         ?>
       </select>
@@ -41,7 +41,7 @@ $status_color = $status_colors[$ticket->status_id];
     ?>
   </td>
   <td class='px-6 py-4 whitespace-nowrap text-sm text-gray-800'>
-    <?= $ticket->owner_id ?>
+    <?= $ticket->owner_name ?>
   </td>
   <td class='px-6 py-4 whitespace-nowrap text-sm text-gray-800'>
     <?= $ticket->created_at->format('Y/m/d H:i') ?>
