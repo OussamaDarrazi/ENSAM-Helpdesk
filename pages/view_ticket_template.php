@@ -117,7 +117,8 @@
         <!-- TICKET TITLE -->
         <div
           class="sticky top-0 w-full bg-white border-b border-gray-200 p-4 text-lg font-bold text-gray-600 flex justify-between">
-          #021232 - Pas de connection
+          #<?=$ticket->id?> - <?=$ticket->subject?>
+
           <div class="hs-tooltip">
             <button data-hs-overlay="#hs-slide-up-animation-modal">
               <svg class="flex-shrink-0 size-6 mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
