@@ -138,14 +138,15 @@
 
         <!-- END TICKET TITLE -->
         <!-- CHAT CONTENT -->
-        <div class="flex-grow  overflow-y-scroll p-4 bg-white" id="chat">
+        <div class="flex-grow  overflow-y-scroll p-4 bg-white" id="chat"
+        hx-post="htmx_message?ticket_id=<?=$ticket->id?>" hx-target="#chat" hx-swap="innerHTML scroll:bottom" hx-trigger="every 1s">
           <?php require( 'components/message_list.php' ); ?>
         </div>
         <!-- END CHAT CONTENT -->
 
       </div>
       <!-- MESSAGE INPUT -->
-      <form method="post" hx-post="htmx_message?ticket_id=<?=$ticket->id?>" hx-target="#chat" hx-swap="innerHTML scroll:bottom" hx-trigger="submit, every 5s">
+      <form method="post" hx-post="htmx_message?ticket_id=<?=$ticket->id?>" hx-target="#chat" hx-swap="innerHTML scroll:bottom" hx-trigger="submit" hx-on::after-request="this.reset()">
         <div class="flex items-end p-4 gap-6 bg-white">
           <textarea id="hs-textarea-ex-1" name="message"
             class="resize-none px-4 block w-full border-gray-200 rounded-lg text-l focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none "

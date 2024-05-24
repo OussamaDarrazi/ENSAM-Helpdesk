@@ -16,7 +16,8 @@ if (isset($_SESSION["user_id"])) {
 }
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if($message = $_POST["message"]){   
+    if(isset($_POST["message"])){   
+        $message = $_POST["message"];
         $message = new Message($message, $current_user->id, $ticket_id, new DateTime());
         $message->save();
     }
