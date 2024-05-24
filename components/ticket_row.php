@@ -1,7 +1,7 @@
 <?php
 $status_colors = [
-  "bg-blue-600",
-  "bg-gray-500",
+  "bg-sky-600",
+  "bg-indigo-400",
   "bg-yellow-500",
   "bg-teal-500"
 ];
