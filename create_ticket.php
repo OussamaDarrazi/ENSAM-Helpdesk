@@ -32,7 +32,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $database->executeDML("INSERT INTO chat_message 
                                 (message_datetime, sender_id, ticket_id, content) 
                                 VALUES (?,?,?,?)", [$created_at->format('Y-m-d H:i:s'),  $current_user->id, $ticket->id, $description]);
-    echo $ticket->id;
+    header("Location: view_ticket.php?ticket_id= " . $ticket->id); //redirect to the ticket page
+
 }
 
 $categories = $database->executeDQL("SELECT * from ticket_category ORDER BY category_name='Autre', category_name");
