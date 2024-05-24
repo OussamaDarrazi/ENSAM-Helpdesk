@@ -1,4 +1,4 @@
-<div class="h-screen flex flex-col">
+<div class="h-screen flex flex-col bg-gray-100">
   <?php
   require 'components/navbar.php'; ?>
 
@@ -11,8 +11,7 @@
           class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none">
           <div
             class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-14 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
-            <div
-              class="flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto ">
+            <div class="flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto ">
               <div class="flex justify-between items-center py-3 px-4 border-b ">
                 <h3 class="font-bold text-gray-800 ">
                   Info
@@ -29,10 +28,80 @@
                   </svg>
                 </button>
               </div>
-              <div class="p-4 overflow-y-auto">
-                <p class="mt-1 text-gray-800 ">
-                  Hna ghandispalyin l'information dial customer w kda
-                </p>
+              <div class="p-4 overflow-y-auto flex flex-col gap-2">
+              <p class="font-medium text-xs text-gray-500">Nom</p>
+              <p><?= $ticket_owner->first_name . " " . $ticket_owner->last_name ?></p>
+
+              <p class="font-medium text-xs text-gray-500">Departement</p>
+              <p><?= $ticket_owner_department ?></p>
+
+                <p class="font-medium text-xs text-gray-500">Adresse mail</p>
+                <!-- INPUT COPY -->
+                <div>
+                  <input type="hidden" id="hs-clipboard-tooltip-on-hover" value="<?= $ticket_owner->email ?>">
+
+                  <button type="button"
+                    class="js-clipboard-example [--is-toggle-tooltip:false] hs-tooltip relative py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-mono rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                    data-clipboard-target="#hs-clipboard-tooltip-on-hover" data-clipboard-action="copy"
+                    data-clipboard-success-text="Copied">
+                    <?= $ticket_owner->email ?>
+
+                    <span class="border-s ps-3.5">
+                      <svg class="js-clipboard-default size-4 group-hover:rotate-6 transition"
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                      </svg>
+
+                      <svg class="js-clipboard-success hidden size-4 text-blue-600 rotate-6"
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+
+                    <span
+                      class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity hidden invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded-lg shadow-sm"
+                      role="tooltip">
+                      <span class="js-clipboard-success-text">Copy</span>
+                    </span>
+                  </button>
+                </div>
+                <!-- END INPUT COPY -->
+                <p class="font-medium text-xs text-gray-500">Telephone</p>
+                <!-- INPUT COPY -->
+                <div>
+                  <input type="hidden" id="hs-clipboard-tooltip-on-hover" value="<?= $ticket_owner->phone_number ?>">
+
+                  <button type="button"
+                    class="js-clipboard-example [--is-toggle-tooltip:false] hs-tooltip relative py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-mono rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                    data-clipboard-target="#hs-clipboard-tooltip-on-hover" data-clipboard-action="copy"
+                    data-clipboard-success-text="Copied">
+                    <?= $ticket_owner->phone_number ?>
+                    <span class="border-s ps-3.5">
+                      <svg class="js-clipboard-default size-4 group-hover:rotate-6 transition"
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                      </svg>
+
+                      <svg class="js-clipboard-success hidden size-4 text-blue-600 rotate-6"
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+
+                    <span
+                      class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity hidden invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded-lg shadow-sm"
+                      role="tooltip">
+                      <span class="js-clipboard-success-text">Copy</span>
+                    </span>
+                  </button>
+                </div>
+                <!-- END INPUT COPY -->
               </div>
               <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t ">
                 <button type="button"
@@ -46,25 +115,30 @@
         </div>
         <!-- END CUSTOMER INFO MODAL -->
         <!-- TICKET TITLE -->
-        <div class="sticky top-0 w-full bg-white border-b border-gray-200 p-4 text-lg font-bold text-gray-600 flex justify-between">
+        <div
+          class="sticky top-0 w-full bg-white border-b border-gray-200 p-4 text-lg font-bold text-gray-600 flex justify-between">
           #021232 - Pas de connection
           <div class="hs-tooltip">
             <button data-hs-overlay="#hs-slide-up-animation-modal">
-              <svg class="flex-shrink-0 size-6 mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="flex-shrink-0 size-6 mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
                 <circle cx="12" cy="12" r="10"></circle>
                 <path d="M12 16v-4"></path>
                 <path d="M12 8h.01"></path>
               </svg>
             </button>
-            <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-600 text-xs font-medium text-white rounded shadow-sm" role="tooltip">
-      Information sur le client
-    </span>
+            <span
+              class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-600 text-xs font-medium text-white rounded shadow-sm"
+              role="tooltip">
+              Information sur le client
+            </span>
           </div>
         </div>
 
         <!-- END TICKET TITLE -->
         <!-- CHAT CONTENT -->
-        <div class="flex-grow  overflow-y-scroll p-4">
+        <div class="flex-grow  overflow-y-scroll p-4 bg-white">
           <!-- Chat Bubble -->
           <ul class="space-y-5">
             <!-- Chat -->
@@ -102,7 +176,7 @@
       </div>
       <!-- MESSAGE INPUT -->
       <form action="post">
-        <div class="flex items-end p-4 gap-6">
+        <div class="flex items-end p-4 gap-6 bg-white">
           <textarea id="hs-textarea-ex-1"
             class="resize-none px-4 block w-full border-gray-200 rounded-lg text-l focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none "
             placeholder="Ask me anything..." rows="1"></textarea>
@@ -151,4 +225,64 @@
       });
     })();
   })()
+</script>
+<script src="./node_modules/clipboard/dist/clipboard.min.js"></script>
+<script>
+    // INITIALIZATION OF CLIPBOARD
+    // =======================================================
+    (function () {
+      window.addEventListener('load', () => {
+        const $clipboards = document.querySelectorAll('.js-clipboard-example');
+        $clipboards.forEach((el) => {
+          const isToggleTooltip = HSStaticMethods.getClassProperty(el, '--is-toggle-tooltip') === 'false' ? false : true;
+          const clipboard = new ClipboardJS(el, {
+            text: (trigger) => {
+              const clipboardText = trigger.dataset.clipboardText;
+
+              if (clipboardText) return clipboardText;
+
+              const clipboardTarget = trigger.dataset.clipboardTarget;
+              const $element = document.querySelector(clipboardTarget);
+
+              if (
+                $element.tagName === 'SELECT'
+                || $element.tagName === 'INPUT'
+                || $element.tagName === 'TEXTAREA'
+              ) return $element.value
+              else return $element.textContent;
+            }
+          });
+          clipboard.on('success', () => {
+            const $default = el.querySelector('.js-clipboard-default');
+            const $success = el.querySelector('.js-clipboard-success');
+            const $successText = el.querySelector('.js-clipboard-success-text');
+            const successText = el.dataset.clipboardSuccessText || '';
+            const tooltip = el.closest('.hs-tooltip');
+            const $tooltip = HSTooltip.getInstance(tooltip, true);
+            let oldSuccessText;
+
+            if ($successText) {
+              oldSuccessText = $successText.textContent
+              $successText.textContent = successText
+            }
+            if ($default && $success) {
+              $default.style.display = 'none'
+              $success.style.display = 'block'
+            }
+            if (tooltip && isToggleTooltip) HSTooltip.show(tooltip);
+            if (tooltip && !isToggleTooltip) $tooltip.element.popperInstance.update();
+
+            setTimeout(function () {
+              if ($successText && oldSuccessText) $successText.textContent = oldSuccessText;
+              if (tooltip && isToggleTooltip) HSTooltip.hide(tooltip);
+              if (tooltip && !isToggleTooltip) $tooltip.element.popperInstance.update();
+              if ($default && $success) {
+                $success.style.display = '';
+                $default.style.display = '';
+              }
+            }, 800);
+          });
+        });
+      })
+    })()
 </script>
