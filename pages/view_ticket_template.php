@@ -138,48 +138,18 @@
 
         <!-- END TICKET TITLE -->
         <!-- CHAT CONTENT -->
-        <div class="flex-grow  overflow-y-scroll p-4 bg-white">
-          <!-- Chat Bubble -->
-          <ul class="space-y-5">
-            <!-- Chat -->
-            <li class="max-w-lg flex gap-x-2 sm:gap-x-4">
-              <!-- Card -->
-              <div class="bg-white border border-gray-200 rounded-2xl p-4 space-y-3">
-                <p class="text-sm ">
-                  slm hh
-                </p>
-              </div>
-              <!-- End Card -->
-            </li>
-            <!-- End Chat -->
-
-            <!-- Chat -->
-            <li class="max-w-lg ms-auto flex justify-end gap-x-2 sm:gap-x-4">
-              <div class="grow text-end space-y-3">
-                <!-- Card -->
-                <div class="inline-block bg-blue-600 rounded-2xl p-4 shadow-sm">
-                  <p class="text-sm text-white">
-                    slt cv?
-                  </p>
-                </div>
-                <!-- End Card -->
-              </div>
-            </li>
-            <!-- End Chat -->
-
-
-          </ul>
-          <!-- End Chat Bubble -->
+        <div class="flex-grow  overflow-y-scroll p-4 bg-white" id="chat">
+          <?php require( 'components/message_list.php' ); ?>
         </div>
         <!-- END CHAT CONTENT -->
 
       </div>
       <!-- MESSAGE INPUT -->
-      <form action="post">
+      <form method="post" hx-post="htmx_message?ticket_id=<?=$ticket->id?>" hx-target="#chat" hx-swap="innerHTML scroll:bottom" hx-trigger="submit, every 5s">
         <div class="flex items-end p-4 gap-6 bg-white">
-          <textarea id="hs-textarea-ex-1"
+          <textarea id="hs-textarea-ex-1" name="message"
             class="resize-none px-4 block w-full border-gray-200 rounded-lg text-l focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none "
-            placeholder="Ask me anything..." rows="1"></textarea>
+            placeholder="Aa..." rows="1"></textarea>
           <button type="submit"
             class="inline-flex flex-shrink-0 justify-center items-center size-8 rounded-lg text-white bg-blue-600 hover:bg-blue-500 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-500">
             <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16"

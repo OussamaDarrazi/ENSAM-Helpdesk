@@ -22,7 +22,7 @@ class Message
     {
         if ($this->id === null) {
             $sql = "INSERT INTO chat_message ( message_datetime, sender_id, ticket_id, content) 
-                    VALUES ( ?, ?, ?, ?, ?)";
+                    VALUES ( ?, ?, ?, ?)";
             $params = [
                 $this->sent_at->format('Y-m-d H:i:s'),
                 $this->sender_id,
@@ -32,7 +32,7 @@ class Message
 
             if ($this->db->executeDML($sql, $params)) {
                 //Retirieving the id
-                $sql = "SELECT message_id FROM chat_message WHERE message_datetime = ? AND sender_id = ? AND ticket_id = ? AND content";
+                $sql = "SELECT message_id FROM chat_message WHERE message_datetime = ? AND sender_id = ? AND ticket_id = ? AND content = ?";
                 $params = [
                     $this->sent_at->format('Y-m-d H:i:s'),
                     $this->sender_id,
