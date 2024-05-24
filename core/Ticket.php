@@ -35,7 +35,7 @@ class Ticket{
         if ($this->id === null) {
             // Insert new ticket
             $sql = "INSERT INTO ticket (created_by, assigned_to, created_at,  subject, category_id, status_id) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?)";
+                    VALUES (?, ?, ?, ?, ?, ?)";
             $params = [
                 $this->owner_id,
                 $this->assigned_helpdesk_id,
