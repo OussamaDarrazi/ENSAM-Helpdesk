@@ -31,15 +31,15 @@
   <form action="post">
     <input type="hidden" name="ticket_id" value="">
     
-    <!-- hx-post="assign_ticket.php" 
-    hx-target="closest tr" hx-swap="outerHTML" -->
     <select 
-    name="assign" 
-    id="assign" class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none ">
-        <option value="" 
+    hx-post="change_user_type.php?user_id= <?=$user->id?>" 
+    hx-swap="none"
+    name="usertype" 
+    id="usertype" class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none ">
+        <option value="0" 
         <?php if ($user->user_type == UserType::EMPLOYE) {echo "selected"; }?>
         >Employé</option>
-        <option value=""
+        <option value="1"
         <?php if ($user->user_type == UserType::HELPDESK) {echo "selected"; }?>
         >Helpdesk</option>
       </select>
