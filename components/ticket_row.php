@@ -11,9 +11,12 @@ $status_color = $status_colors[$ticket->status_id-1];
   <td class='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800'>
     <?= $ticket->id ?>
   </td>
-  <td class='px-6 py-4 whitespace-nowrap text-sm text-gray-800 text-ellipsis'>
-    <?= $ticket->subject ?>
-  </td>
+  <td class='px-6 py-4 whitespace-nowrap text-sm text-gray-800 text-ellipsis '>
+    <a href="view_ticket.php?ticket_id=<?=$ticket->id ?>" class="hover:underline hover:text-blue-600 text-base" >
+
+      <?= $ticket->subject ?>
+    </a>
+    </td>
   <td class='px-6 py-4 whitespace-nowrap text-sm text-gray-800'>
 
     <span
