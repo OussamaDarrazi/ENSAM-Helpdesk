@@ -116,9 +116,28 @@
         <!-- END CUSTOMER INFO MODAL -->
         <!-- TICKET TITLE -->
         <div
-          class="sticky top-0 w-full bg-white border-b border-gray-200 p-4 text-lg font-bold text-gray-600 flex justify-between">
+          class="sticky top-0 w-full bg-white border-b border-gray-200 p-4 text-lg font-bold text-gray-600 flex justify-between items-center">
           #<?=$ticket->id?> - <?=$ticket->subject?>
+<div class="flex gap-2 items-center">
+<?php if($ticket->status_id != 4) { ?>
+<button 
+id="mark_resolved"
+hx-get="resolve.php?ticket_id=<?=$ticket->id?>" 
+hx-target="#message_form"
+hx-swap="delete"
 
+                    class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none">
+                    Marquer comme résolue
+                </button>
+                <?php }else{?>
+                  <span
+id="mark_resolved"
+hx-swap-oob="true"
+
+                    class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold text-teal-500  ">
+                    Résolue
+                </span>
+               <?php } ?>
           <div class="hs-tooltip">
             <button data-hs-overlay="#hs-slide-up-animation-modal">
               <svg class="flex-shrink-0 size-6 mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -135,6 +154,7 @@
               Information sur le client
             </span>
           </div>
+          </div>
         </div>
 
         <!-- END TICKET TITLE -->
@@ -147,13 +167,15 @@
 
       </div>
       <!-- MESSAGE INPUT -->
-      <form method="post" hx-post="htmx_message?ticket_id=<?=$ticket->id?>" hx-target="#chat" hx-swap="innerHTML scroll:bottom" hx-trigger="submit" hx-on::after-request="this.reset()">
+      <?php if($ticket->status_id != 4) { ?>
+      <form id="message_form" method="post" hx-post="htmx_message?ticket_id=<?=$ticket->id?>" hx-target="#chat" hx-swap="innerHTML scroll:bottom" hx-trigger="submit" hx-on::after-request="this.reset()">
         <div class="flex items-end p-4 gap-6 bg-white">
-          <textarea id="hs-textarea-ex-1" name="message"
-            class="resize-none px-4 block w-full border-gray-200 rounded-lg text-l focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none "
+          <textarea 
+          id="hs-textarea-ex-1" name="message"
+            class="resize-none px-4 block w-full border-gray-200 rounded-lg text-l focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed "
             placeholder="Aa..." rows="1"></textarea>
           <button type="submit"
-            class="inline-flex flex-shrink-0 justify-center items-center size-8 rounded-lg text-white bg-blue-600 hover:bg-blue-500 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            class="inline-flex flex-shrink-0 justify-center items-center size-8 rounded-lg text-white bg-blue-600 hover:bg-blue-500 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed">
             <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
               fill="currentColor" viewBox="0 0 16 16">
               <path
@@ -164,7 +186,7 @@
         </div>
       </form>
       <!-- END MESSAGE INPUT -->
-
+      <?php } ?>
     </div>
   </div>
 </div>
