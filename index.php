@@ -16,14 +16,18 @@ if(isset($_SESSION["user_id"])){
     $context["categories"] = $categories;
 
     if($current_user->user_type == UserType::ADMIN){
-        $tickets = Ticket::TicketsFromDB("select * from ticket order by created_at desc");
+        $tickets = Ticket::TicketsFromDB("SELECT * from ticket order by created_at desc");
         $helpdesk = User::UsersFromDB("SELECT * from employe where isHelpdesk=1 ORDER BY first_name");
         $context["tickets"] = $tickets;
         $context["helpdesk"] = $helpdesk;
         echo base_template(render_template("pages/admin_dashboard.php", $context), "Admin Dashboard");
     }elseif($current_user->user_type == UserType::HELPDESK){
+        $tickets = Ticket::TicketsFromDB("SELECT * from ticket where assigned_to = ".$current_user->id." order by created_at desc");
+        $context["tickets"] = $tickets;
         echo base_template(render_template("pages/helpdesk_dashboard.php", $context), "Helpdesk Dashboard");
     }elseif($current_user->user_type == UserType::EMPLOYE){
+        $tickets = Ticket::TicketsFromDB("SELECT * from ticket where created_by = ".$current_user->id." order by created_at desc");
+        $context["tickets"] = $tickets;
         echo base_template(render_template("pages/customer_dashboard.php", $context), "Employee Dashboard");
     }
 }else{

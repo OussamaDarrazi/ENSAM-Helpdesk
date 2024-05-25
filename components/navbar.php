@@ -28,7 +28,9 @@
             <div
                 class="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
                 <a class="font-medium text-gray-500 sm:py-6" href="index.php">Dashboard</a>
+                <?php if ($current_user->user_type == UserType::ADMIN) { ?>
                 <a class="font-medium text-gray-500 sm:py-6" href="users.php">Utilisateurs</a>
+                    <?php }?>
                 <!-- DROP DOWN -->
                 <div
                     class="hs-dropdown [--strategy:static] sm:[--strategy:fixed] [--adaptive:none] sm:[--trigger:hover] sm:py-4">

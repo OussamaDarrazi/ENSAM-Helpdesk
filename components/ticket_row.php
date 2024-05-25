@@ -45,7 +45,9 @@ $status_color = $status_colors[$ticket->status_id-1];
       </select>
 
     <?php }
-    ?>
+    else { ?>
+    <?=$ticket->assigned_helpdesk_id?>
+    <?php }?>
     </form>
   </td>
   <td class='px-6 py-4 whitespace-nowrap text-sm text-gray-800'>
