@@ -5,7 +5,7 @@
     <div class="text-center">
       <h1 class="block text-2xl font-bold text-gray-800">Évaluez nous!</h1>
       <p class="mt-2 text-sm text-gray-600">
-        Comment trouvez vous notre interraction durant votre dernier ticket?</p>
+        Comment trouvez vous notre interraction durant votre dernier <a href="view_ticket.php?ticket_id=<?=$ticket_id?>" target="_blank" class="text-blue-600 hover:underline">ticket</a>?</p>
     </div>
 <!-- Errors -->
 <?php

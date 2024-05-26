@@ -8,6 +8,7 @@ $context = [];
 if (!empty($_GET["ticket_id"])) {
     if ($database->executeDQL("SELECT 1 FROM ticket where ticket_id=?", [$_GET["ticket_id"]])) {
         $ticket_id = $_GET["ticket_id"];
+        $context["ticket_id"] = $ticket_id;
     } else {
         header("Location: index.php");
     }

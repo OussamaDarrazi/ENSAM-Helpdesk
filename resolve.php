@@ -3,6 +3,8 @@ session_start();
 require_once("core/EnsamHelpdeskDatabase.php");
 require_once ("core/User.php");
 require_once ("core/Ticket.php");
+require_once ("utils/send_feedback_survey.php");
+$database = HelpdeskDatabase::getInstance();
 $context=[];
 $errors=[];
 
@@ -14,6 +16,11 @@ if(isset($_SESSION["user_id"])){
         $ticket = Ticket::TicketsFromDB("select * from ticket where ticket_id = $ticket_id")[0];
         $ticket->status_id = 4;
         $ticket->save();
+        $owner_email = $database->executeDQL("SELECT email from employe where employe_id = ?", [$ticket->owner_id])[0]["email"];
+        echo $owner_email;
+        if(!send_feedback_survey($owner_email, $ticket_id)){
+            echo "error sending the message to $owner_email, $ticket_id";
+        }
     }
 }
 ?>
