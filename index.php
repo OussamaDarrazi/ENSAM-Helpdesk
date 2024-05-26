@@ -15,6 +15,8 @@ if(isset($_SESSION["user_id"])){
     $categories = $database->executeDQL("SELECT * from ticket_category ORDER BY category_name='Autre', category_name");
     $context["categories"] = $categories;
 
+    $stats = $database->executeDQL("SELECT * FROM daily_stats")[0];
+    $context["stats"] = $stats;
     if($current_user->user_type == UserType::ADMIN){
         $tickets = Ticket::TicketsFromDB("SELECT * from ticket order by created_at desc");
         $helpdesk = User::UsersFromDB("SELECT * from employe where isHelpdesk=1 ORDER BY first_name");

@@ -17,7 +17,7 @@ require 'components/navbar.php';?>
 
           <div class="mt-1 flex items-center gap-x-2">
             <h3 class="text-xl sm:text-2xl font-medium text-gray-800 ">
-              203
+              <?=$stats["open_tickets"]?>
             </h3>
           </div>
         </div>
@@ -34,7 +34,7 @@ require 'components/navbar.php';?>
 
           <div class="mt-1 flex items-center gap-x-2">
             <h3 class="text-xl sm:text-2xl font-medium text-gray-800 ">
-              45
+            <?=$stats["resolved_tickets"]?>
             </h3>
           </div>
         </div>
@@ -52,7 +52,7 @@ require 'components/navbar.php';?>
 
           <div class="mt-1 flex items-center gap-x-2">
             <h3 class="text-xl sm:text-2xl font-medium text-gray-800 ">
-              12min
+            <?=$stats["AHT"]?>
             </h3>
           </div>
         </div>
