@@ -53,13 +53,13 @@ if (!empty($errors)) {
   <label for="hs-ratings-readonly-2" class="cursor-pointer px-2 py-1 rounded peer-checked:bg-gray-100 text-xl">😐️</label>
   </div>
   <div>
-  <input id="hs-ratings-readonly-3" type="radio" class="peer hidden" name="rating" value="3">
+  <input id="hs-ratings-readonly-3" type="radio" class="peer hidden" name="rating" value="3" checked>
   <label for="hs-ratings-readonly-3" class="cursor-pointer px-2 py-1 rounded peer-checked:bg-gray-100 text-xl">🤩</label>
   </div>
 </div>
 <div class="w-full mb-6">
   <label for="textarea-email-label" class="sr-only">Feedback</label>
-  <textarea id="textarea-email-label" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none " rows="5" placeholder="Merci d'elaborer sur votre choix"></textarea>
+  <textarea id="textarea-email-label" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none " rows="5" placeholder="Merci d'elaborer sur votre choix" name="feedback"></textarea>
 </div>
           <!-- End Form Group -->
 
