@@ -30,7 +30,7 @@ if(isset($_SESSION["user_id"])){
     }elseif($current_user->user_type == UserType::EMPLOYE){
         $tickets = Ticket::TicketsFromDB("SELECT * from ticket where created_by = ".$current_user->id." order by created_at desc");
         $context["tickets"] = $tickets;
-        echo base_template(render_template("pages/customer_dashboard.php", $context), "Employee Dashboard");
+        echo base_template(render_template("pages/customer_dashboard.php", $context), "Employé Dashboard");
     }
 }else{
  header("Location: login.php");
