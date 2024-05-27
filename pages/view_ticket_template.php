@@ -159,8 +159,7 @@ hx-swap-oob="true"
 
         <!-- END TICKET TITLE -->
         <!-- CHAT CONTENT -->
-        <div class="flex-grow  overflow-y-scroll p-4 bg-white" id="chat"
-        hx-post="htmx_message?ticket_id=<?=$ticket->id?>" hx-target="#chat" hx-swap="innerHTML scroll:bottom" hx-trigger="every 1s">
+        <div class="flex-grow  overflow-y-scroll p-4 bg-white" id="chat">
           <?php require( 'components/message_list.php' ); ?>
         </div>
         <!-- END CHAT CONTENT -->
@@ -168,7 +167,7 @@ hx-swap-oob="true"
       </div>
       <!-- MESSAGE INPUT -->
       <?php if($ticket->status_id != 4) { ?>
-      <form id="message_form" method="post" hx-post="htmx_message?ticket_id=<?=$ticket->id?>" hx-target="#chat" hx-swap="innerHTML scroll:bottom" hx-trigger="submit" hx-on::after-request="this.reset()">
+      <form id="message_form" method="post" hx-post="htmx_message?ticket_id=<?=$ticket->id?>" hx-target="#chat" hx-swap="innerHTML" hx-trigger="submit, every 3s" hx-on::after-request="this.reset()">
         <div class="flex items-end p-4 gap-6 bg-white">
           <textarea 
           id="hs-textarea-ex-1" name="message"
