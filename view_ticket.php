@@ -38,9 +38,11 @@ if (isset($_GET["ticket_id"])) {
 
 //Sending a message
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $message = $_POST["message"];
-    $message = new Message($message, $current_user->id, $ticket_id, new DateTime());
-    $message->save();
+    if($_POST["message"] != ""){
+        $message = $_POST["message"];
+        $message = new Message($message, $current_user->id, $ticket_id, new DateTime());
+        $message->save();
+    }
 }
 
 $categories = $database->executeDQL("SELECT * from ticket_category ORDER BY category_name='Autre', category_name");
