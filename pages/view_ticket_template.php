@@ -120,14 +120,19 @@
           #<?=$ticket->id?> - <?=$ticket->subject?>
 <div class="flex gap-2 items-center">
 <?php if($ticket->status_id != 4) { ?>
+  <div class="htmx-indicator animate-spin inline-block size-6 border-[3px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500" role="status" id="resolving_loader" aria-label="loading">
+  <span class="sr-only">Loading...</span>
+</div>
 <button 
 id="mark_resolved"
 hx-get="resolve.php?ticket_id=<?=$ticket->id?>" 
 hx-target="#message_form"
 hx-swap="delete"
+hx-indicator="#resolving_loader"
 
                     class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none">
                     Marquer comme résolue
+                    
                 </button>
                 <?php }else{?>
                   <span
