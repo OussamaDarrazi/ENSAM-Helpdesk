@@ -18,7 +18,7 @@ if (!empty($_GET["ticket_id"])) {
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $rating=$_POST["rating"];
-    $feedback=$_POST["feedback"];
+    $feedback=htmlspecialchars($_POST["feedback"]);
     if(!$database->executeDML("INSERT INTO ticket_rating (ticket_id, rating, feedback) VALUES (?,?,?)", [$ticket_id, $rating, $feedback])){
         $errors[] = "Error: Could not add rating";
     }else{

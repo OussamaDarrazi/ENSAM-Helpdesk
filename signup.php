@@ -18,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $phone_number = $_POST["phone_number"];
         $password = $_POST["password"];
         $password2 = $_POST["password2"];
-        $first_name = ucfirst($_POST["first-name"]);
-        $last_name = ucfirst($_POST["last-name"]);
+        $first_name = htmlspecialchars(ucfirst($_POST["first-name"]));
+        $last_name = htmlspecialchars(ucfirst($_POST["last-name"]));
         $department_id = $_POST["department"];
         
         $comptes_associées= User::UsersFromDB("SELECT * from employe where email='$email'");
