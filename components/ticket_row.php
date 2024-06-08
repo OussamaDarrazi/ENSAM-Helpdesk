@@ -31,7 +31,7 @@ $status_color = $status_colors[$ticket->status_id-1];
   <form action="post">
     <input type="hidden" name="ticket_id" value="<?=$ticket->id ?>">
     <?php
-    if ($current_user->user_type == UserType::ADMIN) { ?>
+    if ($current_user->user_type == UserType::ADMIN && $ticket->status_id != 4){ ?>
     <select 
     hx-post="assign_ticket.php" 
     hx-target="closest tr" hx-swap="outerHTML"
@@ -45,9 +45,14 @@ $status_color = $status_colors[$ticket->status_id-1];
       </select>
 
     <?php }
-    else { ?>
-    <?=$ticket->assigned_helpdesk_id?>
-    <?php }?>
+    else {  foreach ($helpdesk as $hd) {
+      if($hd->id == $ticket->assigned_helpdesk_id){
+         echo $hd->first_name . " " . $hd->last_name;
+        }else{ 
+          echo "Unassigned";}
+      }
+    }
+    ?>
     </form>
   </td>
   <td class='px-6 py-4 whitespace-nowrap text-sm text-gray-800'>
