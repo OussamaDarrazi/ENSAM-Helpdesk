@@ -22,8 +22,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $assigned_hd = null;
     $created_at = new DateTime();
     $last_updated_at = $created_at;
-    $subject = trim($_POST["ticket_subject"]);
-    $description = trim($_POST["ticket_description"]); //message
+    $subject = htmlspecialchars(trim($_POST["ticket_subject"]));
+    $description = htmlspecialchars(trim($_POST["ticket_description"])); //message
     $category = $_POST["ticket_category"];
     $status = $_POST["ticket_status"];
     $ticket = new Ticket($owner_id, $assigned_hd, $created_at, $last_updated_at, $subject, $category, $status);
