@@ -119,7 +119,8 @@
           class="sticky top-0 w-full bg-white border-b border-gray-200 p-4 text-lg font-bold text-gray-600 flex justify-between items-center">
           #<?=$ticket->id?> - <?=$ticket->subject?>
 <div class="flex gap-2 items-center">
-<?php if($ticket->status_id != 4) { ?>
+  <?php if($ticket->status_id != 4) { ?>
+    <?php if ($current_user->user_type != UserType::EMPLOYE) { ?>
   <div class="htmx-indicator animate-spin inline-block size-6 border-[3px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500" role="status" id="resolving_loader" aria-label="loading">
   <span class="sr-only">Loading...</span>
 </div>
@@ -134,6 +135,7 @@ hx-indicator="#resolving_loader"
                     Marquer comme résolue
                     
                 </button>
+                <?php } ?>
                 <?php }else{?>
                   <span
 id="mark_resolved"

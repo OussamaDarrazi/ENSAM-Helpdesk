@@ -31,6 +31,7 @@
                 <?php if ($current_user->user_type == UserType::ADMIN) { ?>
                 <a class="font-medium text-gray-500 sm:py-6" href="users.php">Utilisateurs</a>
                     <?php }?>
+                    <?php if ($current_user->user_type != UserType::EMPLOYE) { ?>
                 <!-- DROP DOWN -->
                 <div
                     class="hs-dropdown [--strategy:static] sm:[--strategy:fixed] [--adaptive:none] sm:[--trigger:hover] sm:py-4">
@@ -83,6 +84,7 @@
 
                 </div>
                 <!-- END DROP DOWN   -->
+                <?php }?>
                 <a href="create_ticket.php"
                     class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none">
                     Nouveau Ticket
