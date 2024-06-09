@@ -46,5 +46,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 $categories = $database->executeDQL("SELECT * from ticket_category ORDER BY category_name='Autre', category_name");
+$articles = $database->executeDQL("SELECT * from knowledge_base_article");
+$context["articles"] = $articles;
 $context["categories"] = $categories;
 echo base_template(render_template("pages/view_ticket_template.php", $context));

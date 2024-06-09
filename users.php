@@ -13,6 +13,8 @@ if(isset($_SESSION["user_id"])){
     $current_user = User::UsersFromDB("SELECT * FROM employe where employe_id = $id")[0];
     $context["current_user"] = $current_user;
     $categories = $database->executeDQL("SELECT * from ticket_category ORDER BY category_name='Autre', category_name");
+    $articles = $database->executeDQL("SELECT * from knowledge_base_article");
+    $context["articles"] = $articles;
     $context["categories"] = $categories;
 
     if($current_user->user_type == UserType::ADMIN){
