@@ -19,11 +19,11 @@ if(isset($_SESSION["user_id"])){
 
     $stats = $database->executeDQL("SELECT * FROM daily_stats")[0];
     $context["stats"] = $stats;
+    $helpdesk = User::UsersFromDB("SELECT * from employe where isHelpdesk=1 ORDER BY first_name");
+    $context["helpdesk"] = $helpdesk;
     if($current_user->user_type == UserType::ADMIN){
         $tickets = Ticket::TicketsFromDB("SELECT * from ticket order by created_at desc");
-        $helpdesk = User::UsersFromDB("SELECT * from employe where isHelpdesk=1 ORDER BY first_name");
         $context["tickets"] = $tickets;
-        $context["helpdesk"] = $helpdesk;
         echo base_template(render_template("pages/admin_dashboard.php", $context), "Admin Dashboard");
     }elseif($current_user->user_type == UserType::HELPDESK){
         $tickets = Ticket::TicketsFromDB("SELECT * from ticket where assigned_to = ".$current_user->id." order by created_at desc");
