@@ -41,15 +41,34 @@
       <!-- End Errors -->
       <form method="post" class="h-full">
         <div class="w-full h-full flex flex-col items-center gap-4 ">
-        <h1 class="text-xl font-bold text-gray-600 self-start">Nouveau Article</h1>    
+        <h1 class="text-xl font-bold text-gray-600 self-start">
+        <?php if(isset($article)){
+          echo "Modifier ";
+          }else{
+          echo "Nouveau Article";
+        }?>
+        </h1>    
         <!-- TITLE AND CATEGORY -->
           <div class="flex gap-4 w-full">
-            <input type="text" name="article_title" placeholder="Titre"
+            <input 
+            type="text"
+            name="article_title"
+            placeholder="Titre"
+            value=<?php if(isset($article)){echo '"'. $article['article_title'].'"';}else{echo ""; }?>
+
           class="basis-2/3 py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
         <select name="article_category"
       class="basis-1/3 py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none ">
     <?php foreach ($categories as $category) { ?>
-    <option value="<?= $category["category_id"] ?>"><?= $category["category_name"] ?></option>
+    <option 
+    value="<?= $category["category_id"] ?>"  
+    <?php if(isset($article)){
+      if($article["category_id"] == $category["category_id"]){
+        echo " selected";
+      }
+          }?>
+    >
+    <?= $category["category_name"] ?></option>
   </div>
 <?php } ?>
 </select>
@@ -57,12 +76,20 @@
 <!-- END TITLE AND CATEGORY -->
  <!-- WYSIWYG EDITOR -->
 <div class="w-full" >
-            <textarea id="article_content" name="article_content" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none " rows="6"></textarea>
+            <textarea id="article_content" name="article_content" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none " rows="6">
+
+            <?php if(isset($article)){
+          echo $article["content"];
+          }?>
+            </textarea>
+
+
+
 </div>
 <div class="flex-grow"></div>
   <!-- END WYSIWYG EDITOR -->       
   <div class="w-full flex justify-end gap-x-2 place-self-end">
-                    <a href="<?=$_SERVER['HTTP_REFERER']?>" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                    <a href="<?=$_SERVER["HTTP_REFERER"];?>" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
                         Annuler
                                 </a>
                     <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
