@@ -1,7 +1,7 @@
 <div class="min-w-screen h-screen overflow-hidden bg-gray-100  flex flex-col">
   <?php require 'components/navbar.php'; ?>
   <div class="w-full h-full overflow-hidden flex-grow flex flex-col justify-center items-center">
-  <div class="w-3/5 h-fit min-h-96 max-h-full overflow-hidden bg-white border border-gray-200  rounded-xl shadow-sm flex flex-col justify-center items-center">
+  <div class="w-3/5 h-fit min-h-96 max-h-full my-4 overflow-hidden bg-white border border-gray-200  rounded-xl shadow-sm flex flex-col justify-center items-center">
     <div class="w-full h-full p-4 sm:p-7 overflow-y-scroll">
     
 
