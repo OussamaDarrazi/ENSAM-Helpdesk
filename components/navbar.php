@@ -63,7 +63,7 @@
                             <div
                                 class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] sm:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 sm:w-48 hidden z-10 sm:mt-2 bg-white sm:shadow-md rounded-lg p-2 sm: before:absolute sm:border before:-end-5 before:top-0 before:h-full before:w-5 !mx-[10px] top-0 end-full">
                                 <?php foreach ($articles as $nav_article) { ?>
-                                    <?php if( $article["category_id"] == $category["category_id"] ){ ?>
+                                    <?php if( $nav_article["category_id"] == $category["category_id"] ){ ?>
 
                                 <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500"
                                     href="view_article.php?article_id=<?= $nav_article["article_id"] ?>">
