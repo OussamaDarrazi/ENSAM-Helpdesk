@@ -62,7 +62,7 @@
 <div class="flex-grow"></div>
   <!-- END WYSIWYG EDITOR -->       
   <div class="w-full flex justify-end gap-x-2 place-self-end">
-                    <a href="http://localhost/ENSAM-Helpdesk/create_article.php" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                    <a href="<?=$_SERVER['HTTP_REFERER']?>" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
                         Annuler
                                 </a>
                     <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
