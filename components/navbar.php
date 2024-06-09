@@ -77,7 +77,11 @@
                             </div>
                         </div>
                         <?php } ?>
-                        
+                        <!-- HR -->
+                         <hr class="border-gray-200 my-2">
+                         <a href="create_article.php" class="w-full py-1 flex justify-center items-center text-sm font-semibold rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none">
+                    +
+                </a>
                     </div>
 
                 </div>
