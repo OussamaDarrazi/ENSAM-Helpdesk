@@ -3,6 +3,7 @@
   <div class="w-full h-full overflow-hidden flex-grow flex flex-col justify-center items-center">
   <div class="w-3/5 h-fit min-h-96 max-h-full overflow-hidden bg-white border border-gray-200  rounded-xl shadow-sm flex flex-col justify-center items-center">
     <div class="w-full h-full p-4 sm:p-7 overflow-y-scroll">
+    
 
       <!-- Errors -->
       <?php
@@ -40,7 +41,8 @@
       <!-- End Errors -->
       <form method="post" class="h-full">
         <div class="w-full h-full flex flex-col items-center gap-4 ">
-          <!-- TITLE AND CATEGORY -->
+        <h1 class="text-xl font-bold text-gray-600 self-start">Nouveau Article</h1>    
+        <!-- TITLE AND CATEGORY -->
           <div class="flex gap-4 w-full">
             <input type="text" name="article_title" placeholder="Titre"
           class="basis-2/3 py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">

@@ -28,4 +28,4 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 $context["errors"] = $errors;
-echo base_template(render_template("pages/create_kb_article_template.php", $context), "Knowledge Base");
+echo base_template(render_template("pages/create_kb_article_template.php", $context), "Nouveau Article");
