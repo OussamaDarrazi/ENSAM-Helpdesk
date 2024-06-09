@@ -109,7 +109,7 @@
 <script>
     ClassicEditor
     .create(document.querySelector('#article_content'), {
-      toolbar: [ 'bold',  'italic',  'link', 'blockQuote', '|', 'undo', 'redo' ],
+      toolbar: [ 'bold',  'italic','link', 'blockQuote', '|', 'undo', 'redo','|',  'outdent', 'indent'],
     })
     .catch(error => {
       console.error(error);
